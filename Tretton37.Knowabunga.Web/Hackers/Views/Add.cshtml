@@ -1,0 +1,21 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+
+@{
+    Layout = "Shared/Views/_Layout.cshtml";
+}
+<form method="POST" action="/hackers/add">
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="handle">Handle</label>
+        </div>
+        <div class="col-sm-4">
+            <input class="form-control" type="text" name="handle" value="" />
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-default">Add</button>
+        </div>
+    </div>
+</form>

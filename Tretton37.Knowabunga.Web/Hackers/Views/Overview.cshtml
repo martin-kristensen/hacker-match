@@ -1,0 +1,51 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+
+@{
+    Layout = "Shared/Views/_Layout.cshtml";
+}
+
+@section head {
+    <script type="text/javascript">
+        $(function() {
+            $('input[type=checkbox]').change(function () {
+                var data = {
+                    id: $(this).val()
+                }; 
+                $.post('/hackers/updateavailablilty/', data)
+                    .fail(function () {
+                        alert('fail');
+                    });
+            });
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Handle</th>
+                    <th>Edit</th>
+                    <th>Available?</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hacker in Model.Hackers)
+                {
+                    <tr>
+                        <td>
+                            @hacker.Handle
+                        </td>
+                        <td><a href="/hackers/edit/@hacker.Id">Edit</a></td>
+                        <td><input type="checkbox" checked="@hacker.Available" value="@hacker.Id" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <a class="btn btn-default" href="/hackers/add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+        </div>
+    </div>
+</div>
